@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+
+  resources :users,    only: [:show, :edit, :update, :destroy]
   resources :droplets, only: [:index, :show]
   post "droplets/register/:droplet_id",   to: "droplets#register",   as: "register_droplet"
   put  "droplets/deregister/:droplet_id", to: "droplets#deregister", as: "deregister_droplet"

@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized
 
-  def index
-    @users = User.all
-    authorize User
+  def show
+    @user = User.find(params[:id])
+    authorize @user
   end
 
-  def show
+  def edit
     @user = User.find(params[:id])
     authorize @user
   end
@@ -16,9 +16,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+      redirect_to root_path, notice: "Details Updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to edit_user_path(@user), :alert => "Unable to update user."
     end
   end
 
