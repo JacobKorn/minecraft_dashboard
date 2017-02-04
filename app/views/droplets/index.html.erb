@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>All Droplets</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Droplet Name</th>
+          <th>Droplet ID</th>
+          <th>Registered?</th>
+          <th>Register</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @droplets.each do |droplet| %>
+          <tr>
+            <td><%= droplet.name %></td>
+            <td><%= droplet.id %></td>
+            <td><%= RegisteredDroplet.find_by(droplet_id: droplet.id) ? "yes" : "no" %></td>
+            <td><%= RegisteredDroplet.find_by(droplet_id: droplet.id) ? link_to("deregister", deregister_droplet_path(droplet_id: droplet.id), method: "put", class: "alert button") : link_to("register", register_droplet_path(droplet_id: droplet.id), method: "post", class: "button") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<p>Find me in app/views/droplets/show.html.erb</p>

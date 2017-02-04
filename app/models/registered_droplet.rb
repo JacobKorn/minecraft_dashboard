@@ -1,0 +1,2 @@
+class RegisteredDroplet < ApplicationRecord
+end
