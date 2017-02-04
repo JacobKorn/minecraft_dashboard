@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
   resources :droplets, only: [:index, :show]
   post "droplets/register/:droplet_id",   to: "droplets#register",   as: "register_droplet"

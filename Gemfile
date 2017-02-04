@@ -28,6 +28,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'administrate'
 gem 'bourbon'
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'foundation-rails', '~> 5.5'
 gem 'pg'
 gem 'pundit'
