@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :droplets, only: [:index, :show]
-  post "droplets/register/:droplet_id",   to: "droplets#register", as: "register_droplet"
+  post "droplets/register/:droplet_id",   to: "droplets#register",   as: "register_droplet"
   put  "droplets/deregister/:droplet_id", to: "droplets#deregister", as: "deregister_droplet"
+  put  "droplets/power_down/:droplet_id", to: "droplets#power_down", as: "power_down_droplet"
+  put  "droplets/power_up/:droplet_id",   to: "droplets#power_up",   as: "power_up_droplet"
 end

@@ -1,7 +1,19 @@
 <div class="row">
 	<div class="large-12 columns">
 		<h1>Welcome to Super Duper Palace Craft!!!!</h1>
-		<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
-		
 	</div>
 </div>
+
+<% @droplets.each do |droplet| %>
+	<div class="row">
+		<div class="large-12 columns">
+				<h2><%= droplet.name %></h2>
+				<strong>Status:</strong> <%= droplet.status %> <br>
+				<% if droplet.status == "active" %>
+					<%= link_to( "Power Down", power_down_droplet_path(droplet_id: droplet.id), method: "put", class: "alert button") %>
+				<% else %>
+					<%= link_to( "Power Up", power_up_droplet_path(droplet_id: droplet.id), method: "put", class: "success button") %>
+				<% end %>
+		</div>
+	</div>
+<% end %>
